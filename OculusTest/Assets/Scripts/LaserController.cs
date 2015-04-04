@@ -8,11 +8,13 @@ public class LaserController : MonoBehaviour
     public float maximum = 0.3f;
     public GameObject laserFinger;
     public GameObject shield;
+    public GameObject laserBlast;
 
     private LineRenderer renderer;
     private MeshCollider shieldCollision;
     private MeshRenderer shieldRenderer;
     private SkeletalHand skelehand;
+    private GameObject laserBlastInstance; 
     private float currentWidth;
     private float length;
     private float startTime;
@@ -57,14 +59,25 @@ public class LaserController : MonoBehaviour
             {
                 Debug.Log(hit.collider.gameObject.ToString());
                 renderer.SetPosition(1, hit.point);
+                if (!laserBlastInstance)
+                {
+                    laserBlastInstance = Instantiate(laserBlast, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
+                }
+                else
+                {
+                    laserBlastInstance.transform.position = hit.point;
+                    laserBlastInstance.transform.rotation = Quaternion.FromToRotation(Vector3.forward, hit.normal);
+                }
             }
             else
             {
+                Destroy(laserBlastInstance);
                 renderer.SetPosition(1, laserFinger.transform.position + (forward * 40));
             }
         }
         else
         {
+            Destroy(laserBlastInstance);
             if (shieldGrows)
                 startTime = Time.time;
             shieldGrows = false;
