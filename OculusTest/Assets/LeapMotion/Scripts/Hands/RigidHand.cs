@@ -15,6 +15,7 @@ public class RigidHand : SkeletalHand
     public float filtering = 0.5f;
     public GameObject projectile;
     public int projectileSpeed = 2;
+    public float reloadTime = 0.5f;
 
     private float lastFireTime;
     void Start()
@@ -103,7 +104,7 @@ public class RigidHand : SkeletalHand
                 forearm.GetComponent<Rigidbody>().angularVelocity = delta_radians * axis / Time.deltaTime;
             }
         }
-        if (Time.time - lastFireTime > 0.5f)
+        if (Time.time - lastFireTime > reloadTime)
         {
             Vector3 normal = this.hand_.PalmNormal.ToUnity();
             GameObject bullet = Instantiate(projectile, palm.transform.position + normal, Quaternion.identity) as GameObject;
