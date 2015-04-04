@@ -5,12 +5,15 @@ public class Camera_Move : MonoBehaviour
 {
 
     public float spd;
-    public GameObject gObject;
+	public GameObject[] gObject;
+	private int targetIndex = 0;
+
+	private GameObject currentTarget;
 
     // Use this for initialization
     void Start()
     {
-
+		currentTarget = gObject [targetIndex];
     }
 
     // Update is called once per frame
@@ -19,8 +22,10 @@ public class Camera_Move : MonoBehaviour
         MoveTowardsCoordinates();
     }
 
-	public void setDestination(string s) {
-		gObject = GameObject.Find(s);
+	public void nextDestination() {
+		targetIndex++;
+		currentTarget = gObject [targetIndex];
+		Debug.Log("Targeting destination " + (targetIndex + 1));
 	}
 
     private void MoveTowardsCoordinates()
@@ -31,9 +36,9 @@ public class Camera_Move : MonoBehaviour
         //Transform playerTransform = player.transform;
 
         //Vector3 targetPosition = new Vector3(x,y,z);
-        Vector3 targetPosition = gObject.transform.position;
+        Vector3 targetPosition = currentTarget.transform.position;
         Vector3 currentPosition = this.transform.position;
-        if (Vector3.Distance(currentPosition, targetPosition) > .1f)
+        if (Vector3.Distance(currentPosition, targetPosition) > 1f)
         {
             Vector3 directionOfTravel = targetPosition - currentPosition;
             directionOfTravel.Normalize();
@@ -43,5 +48,8 @@ public class Camera_Move : MonoBehaviour
                 (directionOfTravel.z * speed * Time.deltaTime),
                 Space.World);
         }
+		else {
+			nextDestination();
+		}
     }
 }
