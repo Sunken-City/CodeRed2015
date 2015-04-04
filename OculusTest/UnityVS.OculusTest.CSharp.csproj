@@ -130,6 +130,8 @@
     <Compile Include="Assets\Scripts\Camera_Move.cs" />
     <Compile Include="Assets\Scripts\Enemy_Basic_Functions.cs" />
     <Compile Include="Assets\Scripts\LaserController.cs" />
+    <Compile Include="Assets\Scripts\Mummy_AI.cs" />
+    <Compile Include="Assets\Scripts\Player_Script.cs" />
     <Compile Include="Assets\Scripts\Rotate_Camera.cs" />
     <Compile Include="Assets\Scripts\Scarab_AI.cs" />
     <Compile Include="Assets\Scripts\dieAfterTime.cs" />
