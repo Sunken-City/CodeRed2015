@@ -106,10 +106,10 @@ public class RigidHand : SkeletalHand
         }
         if (Time.time - lastFireTime > reloadTime)
         {
-            Finger finger = this.hand_.Fingers[1];
-            Vector3 normal = finger.Direction.ToUnity();
-            GameObject bullet = Instantiate(projectile, fingers[1].GetTipPosition() + normal / 2, Quaternion.identity) as GameObject;
-            bullet.GetComponent<Rigidbody>().velocity = normal * projectileSpeed;
+            //Finger finger = this.hand_.Fingers[1];
+            //Vector3 normal = finger.Direction.ToUnity();
+            //GameObject bullet = Instantiate(projectile, fingers[1].GetTipPosition() + normal / 2, Quaternion.identity) as GameObject;
+            //bullet.GetComponent<Rigidbody>().velocity = normal * projectileSpeed;
             lastFireTime = Time.time;
         }
     }
