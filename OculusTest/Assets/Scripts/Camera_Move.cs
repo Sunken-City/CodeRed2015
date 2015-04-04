@@ -16,7 +16,10 @@ public class Camera_Move : MonoBehaviour
 	}
 	
 	public float spd;
+	public float rotationSpeed;
 	public GameObject[] gObject;
+	public GameObject[] triggerWhenArrive;
+	public bool[] waitWhenArriveAt;
 	private int targetIndex = 0;
 	
 	private GameObject currentTarget;
@@ -33,8 +36,7 @@ public class Camera_Move : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if(running)
-			MoveTowardsCoordinates();
+		if (running) MoveTowardsCoordinates();
 	}
 
 	public void setRunning(bool run)
@@ -48,12 +50,24 @@ public class Camera_Move : MonoBehaviour
 	}
 
 	public void nextDestination() {
+<<<<<<< HEAD
+		if (gObject.Length < targetIndex + 1) targetIndex++;
+		if (targetIndex <= gObject.Length) {
+			currentTarget = gObject [targetIndex];
+			Debug.Log("Arrived at destination" + targetIndex);
+		} else {
+			running = false;
+			Debug.Log("Arrived at final destination");
+		}
+
+=======
 		if (gObject.Length > ++targetIndex) {
 			currentTarget = gObject [targetIndex];
 			Debug.Log ("Targeting destination " + targetIndex);
 		} else {
 
 		}
+>>>>>>> origin/master
 	}
 	
 	private void MoveTowardsCoordinates()
@@ -66,18 +80,34 @@ public class Camera_Move : MonoBehaviour
 		//Vector3 targetPosition = new Vector3(x,y,z);
 		Vector3 targetPosition = currentTarget.transform.position;
 		Vector3 currentPosition = this.transform.position;
+
 		if (Vector3.Distance(currentPosition, targetPosition) > 1f)
 		{
 			Vector3 directionOfTravel = targetPosition - currentPosition;
 			directionOfTravel.Normalize();
-			this.transform.Translate(
-				(directionOfTravel.x * speed * Time.deltaTime),
-				(directionOfTravel.y * speed * Time.deltaTime),
-				(directionOfTravel.z * speed * Time.deltaTime),
-				Space.World);
+			this.transform.Translate((directionOfTravel.x * speed * Time.deltaTime), (directionOfTravel.y * speed * Time.deltaTime), (directionOfTravel.z * speed * Time.deltaTime), Space.World);
+
+			Quaternion wantedRotation = Quaternion.LookRotation(directionOfTravel);
+			this.transform.rotation = Quaternion.RotateTowards (transform.rotation, wantedRotation, rotationSpeed * Time.deltaTime);
 		}
 		else {
-			nextDestination();
+			if (targetIndex + 1 < waitWhenArriveAt.Length) {
+				if (waitWhenArriveAt[targetIndex + 1]) {
+					running = false;
+				} else {
+					nextDestination();
+				}
+			}
+			else {
+				running = false;
+			}
+
+			//Invoke trigger when arrive:  if (triggerWhenArrive[targetIndex + 1] != null) triggerWhenArrive[targetIndex + 1].etc
+
 		}
+	}
+
+	public void ResumeMovement() {
+		running = true;
 	}
 }
