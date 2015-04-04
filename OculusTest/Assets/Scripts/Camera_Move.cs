@@ -9,17 +9,25 @@ public class Camera_Move : MonoBehaviour
 	private int targetIndex = 0;
 	
 	private GameObject currentTarget;
+	private bool running;
 	
 	// Use this for initialization
 	void Start()
 	{
 		currentTarget = gObject [targetIndex];
+		running = true;
 	}
 	
 	// Update is called once per frame
 	void Update()
 	{
-		MoveTowardsCoordinates();
+		if(running)
+			MoveTowardsCoordinates();
+	}
+
+	public void setRunning(bool run)
+	{
+		running = run;
 	}
 	
 	public void nextDestination() {
