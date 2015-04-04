@@ -19,11 +19,13 @@ public class Camera_Move : MonoBehaviour
 	public float rotationSpeed;
 	public GameObject[] gObject;
 	public GameObject[] triggerWhenArrive;
+	public int[] wavesOfEnemies;
 	public bool[] waitWhenArriveAt;
 	private int targetIndex = 0;
 	
 	private GameObject currentTarget;
 	private bool running;
+	private int waveNumber = 0;
 	
 	// Use this for initialization
 	void Start()
@@ -31,6 +33,7 @@ public class Camera_Move : MonoBehaviour
 		currentTarget = gObject [targetIndex];
 		running = true;
 		Debug.Log ("Targeting destination " + targetIndex);
+		GameController.instance.setEnemies (wavesOfEnemies [waveNumber]);
 	}
 	
 	// Update is called once per frame
@@ -98,6 +101,8 @@ public class Camera_Move : MonoBehaviour
 		if (running == false) {
 			running = true;
 			nextDestination();
+			waveNumber++;
+			GameController.instance.setEnemies (wavesOfEnemies [waveNumber]);
 		}
 	}
 }

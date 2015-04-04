@@ -24,6 +24,19 @@ public class GameController : MonoBehaviour
 		//Camera_Move.instance.setRunning (false);
     }
 
+	public void setEnemies(int numberOfEnemies)
+	{
+		enemies = numberOfEnemies;
+	}
+
+	public void registerDeath()
+	{
+		enemies--;
+		if (enemies == 0) {
+			Camera_Move.instance.ResumeMovement();
+		}
+	}
+
 	public int getEnemyCount()
 	{
 		return enemies;

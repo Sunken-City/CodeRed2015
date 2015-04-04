@@ -4,12 +4,12 @@ using System.Collections;
 public class Enemy_Basic_Functions : MonoBehaviour
 {
     public int healthLossMultiplier = 1;
-    private Color healthHue;
+	public int health = 100;
 
     // Use this for initialization
     void Start()
     {
-        healthHue = gameObject.GetComponent<Renderer>().material.color;
+        
     }
 
     // Update is called once per frame
@@ -20,7 +20,7 @@ public class Enemy_Basic_Functions : MonoBehaviour
 
     public void hurtMe()
     {
-        healthHue.r = healthHue.r + healthLossMultiplier;
-        gameObject.GetComponent<Renderer>().material.SetColor("_Color", (healthHue));
+		health -= healthLossMultiplier;
+		GameController.instance.registerDeath ();
     }
 }
