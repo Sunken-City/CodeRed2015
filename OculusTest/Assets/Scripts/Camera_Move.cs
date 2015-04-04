@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Camera_Move : MonoBehaviour
 {
-	
+	public static Camera_Move instance;
+
 	public float spd;
 	public GameObject[] gObject;
 	private int targetIndex = 0;
@@ -16,6 +17,7 @@ public class Camera_Move : MonoBehaviour
 	{
 		currentTarget = gObject [targetIndex];
 		running = true;
+		Debug.Log ("Targeting destination " + targetIndex);
 	}
 	
 	// Update is called once per frame
@@ -31,9 +33,12 @@ public class Camera_Move : MonoBehaviour
 	}
 	
 	public void nextDestination() {
-		targetIndex++;
-		currentTarget = gObject [targetIndex];
-		Debug.Log("Targeting destination " + (targetIndex + 1));
+		if (gObject.Length > ++targetIndex) {
+			currentTarget = gObject [targetIndex];
+			Debug.Log ("Targeting destination " + targetIndex);
+		} else {
+
+		}
 	}
 	
 	private void MoveTowardsCoordinates()
