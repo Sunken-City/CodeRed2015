@@ -1,0 +1,31 @@
+Initialize engine version: 5.0.0f4 (5b98b70ebeb9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: Intel(R) HD Graphics 4600 (ID=0x416)
+    Vendor:   Intel
+    VRAM:     896 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\LeapCSharp.NET3.5.dll (this message is harmless)
+Loading C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\LeapCSharp.NET3.5.dll into Unity Child Domain
+- Completed reload, in  0.172 seconds
+<RI> Initializing input.
+<RI> Input initialized.
+desktop: 1920x1080 59Hz; virtual: 4800x1350 at 0,0
+<RI> Initialized touch support.
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\Pico\Documents\Unity Development\OculusTest\OculusAndLeapTest_Data\Managed\System.dll (this message is harmless)
+Can't find any images. Make sure you enabled 'Allow Images' in the Leap Motion Settings, you are on tracking version 2.1+ and your Leap Motion device is plugged in.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
+Can't find any images. Make sure you enabled 'Allow Images' in the Leap Motion Settings, you are on tracking version 2.1+ and your Leap Motion device is plugged in.
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebug.gen.cpp Line: 56)
+
