@@ -114,9 +114,10 @@
      <Compile Include="Assets\OVR\Scripts\Util\OVRUGUI.cs" />
      <Compile Include="Assets\OVR\Scripts\Util\OVRVisionGuide.cs" />
      <Compile Include="Assets\Scripts\Camera_Move.cs" />
-     <Compile Include="Assets\Scripts\GameController.cs" />
+     <Compile Include="Assets\Scripts\Enemy_Basic_Functions.cs" />
      <Compile Include="Assets\Scripts\LaserController.cs" />
      <Compile Include="Assets\Scripts\Rotate_Camera.cs" />
+     <Compile Include="Assets\Scripts\Scarab_AI.cs" />
      <Compile Include="Assets\Scripts\dieAfterTime.cs" />
      <None Include="Assets\LeapMotion\Materials\Sources\Shaders\Toony-Lighted.shader" />
      <None Include="Assets\OVR\Shaders\OVRGUIShader.shader" />
