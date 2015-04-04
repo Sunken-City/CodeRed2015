@@ -42,5 +42,10 @@ public class GameController : MonoBehaviour
 			//advance the camera
 			Camera_Move.instance.setRunning (!Camera_Move.instance.getRunning());
 		}
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            //sudoku
+            Application.LoadLevel("MainScene"); 
+        }
     }
 }
