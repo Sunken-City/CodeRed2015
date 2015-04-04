@@ -31,6 +31,8 @@ public class LaserController : MonoBehaviour
         length = maximum - minimum;
         currentWidth = minimum + (length / 2);
         shieldPos = shield.transform.localPosition;
+        renderer.SetPosition(0, laserFinger.transform.position);
+        renderer.SetPosition(1, laserFinger.transform.position + (skelehand.fingers[1].GetLeapFinger().Direction.ToUnity() * 5));
     }
 
     // Update is called once per frame
@@ -42,16 +44,24 @@ public class LaserController : MonoBehaviour
             renderer.enabled = true;
             shieldCollision.enabled = false;
             shieldRenderer.enabled = false;
+
+            renderer.SetPosition(0, laserFinger.transform.position);
             currentWidth = minimum + Mathf.PingPong(Time.time, length);
             renderer.SetWidth(currentWidth, currentWidth);
             shieldGrows = true;
-            //Raycast
 
+            //Raycast
             Vector3 forward = finger.Direction.ToUnity();
             RaycastHit hit;
-            if (Physics.Raycast(laserFinger.transform.position + (forward * 5), forward, out hit))
-                print("There is something in front of the object! " + hit.collider.gameObject.ToString());
-            //transform.position
+            if (Physics.Raycast(laserFinger.transform.position + (forward * 3), forward, out hit))
+            {
+                Debug.Log(hit.collider.gameObject.ToString());
+                renderer.SetPosition(1, hit.point);
+            }
+            else
+            {
+                renderer.SetPosition(1, laserFinger.transform.position + (forward * 40));
+            }
         }
         else
         {
