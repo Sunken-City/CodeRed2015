@@ -3,6 +3,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour
 {
+	private int enemies;
+
     public static GameController instance;
     void Awake()
     {
@@ -13,6 +15,7 @@ public class GameController : MonoBehaviour
             Destroy(instance.gameObject);
         }
         instance = this;
+		enemies = 0;
     }
 
     // Use this for initialization
@@ -20,6 +23,16 @@ public class GameController : MonoBehaviour
     {
 
     }
+
+	public int getEnemyCount()
+	{
+		return enemies;
+	}
+
+	public void addEnemy()
+	{
+		++enemies;
+	}
 
     // Update is called once per frame
     void Update()
