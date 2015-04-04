@@ -14,7 +14,12 @@ public class LaserController : MonoBehaviour
     private SkeletalHand skelehand;
     private float currentWidth;
     private float length;
+    private float startTime;
+    private bool shieldGrows;
 
+    private Vector3 startSize = new Vector3(0.0f, 0.0f, 0.0f);
+    private Vector3 endSize = new Vector3(0.1371363f, 0.1371363f, 0.1371363f);
+    private Vector3 shieldPos;
     // Use this for initialization
     void Start()
     {
@@ -24,6 +29,7 @@ public class LaserController : MonoBehaviour
         skelehand = this.GetComponent<SkeletalHand>();
         length = maximum - minimum;
         currentWidth = minimum + (length / 2);
+        shieldPos = shield.transform.localPosition;
     }
 
     // Update is called once per frame
@@ -36,14 +42,25 @@ public class LaserController : MonoBehaviour
             shieldRenderer.enabled = false;
             currentWidth = minimum + Mathf.PingPong(Time.time, length);
             renderer.SetWidth(currentWidth, currentWidth);
+            shieldGrows = true;
             // raycast
             //transform.position
         }
         else
         {
+            if (shieldGrows)
+                startTime = Time.time;
+            shieldGrows = false;
             renderer.enabled = false;
             shieldCollision.enabled = true;
             shieldRenderer.enabled = true;
+            shield.GetComponent<Transform>().localScale = Vector3.Lerp(startSize, endSize, (Time.time - startTime) * 3);
         }
+    }
+
+    void LateUpdate()
+    {
+        shield.GetComponent<Transform>().rotation = Quaternion.identity;
+        shield.transform.localPosition = shieldPos;
     }
 }
