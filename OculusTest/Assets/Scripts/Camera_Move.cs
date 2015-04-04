@@ -3,6 +3,17 @@ using System.Collections;
 
 public class Camera_Move : MonoBehaviour
 {
+	public static Camera_Move instance;
+	void Awake()
+	{
+		//Hostile singleton
+		if (instance)
+		{
+			Debug.Log("Destroying irrelevant Camera_Move instance.");
+			Destroy(instance.gameObject);
+		}
+		instance = this;
+	}
 	
 	public float spd;
 	public float rotationSpeed;
@@ -19,6 +30,7 @@ public class Camera_Move : MonoBehaviour
 	{
 		currentTarget = gObject [targetIndex];
 		running = true;
+		Debug.Log ("Targeting destination " + targetIndex);
 	}
 	
 	// Update is called once per frame
@@ -31,8 +43,14 @@ public class Camera_Move : MonoBehaviour
 	{
 		running = run;
 	}
-	
+
+	public bool getRunning()
+	{
+		return running;
+	}
+
 	public void nextDestination() {
+<<<<<<< HEAD
 		if (gObject.Length < targetIndex + 1) targetIndex++;
 		if (targetIndex <= gObject.Length) {
 			currentTarget = gObject [targetIndex];
@@ -42,6 +60,14 @@ public class Camera_Move : MonoBehaviour
 			Debug.Log("Arrived at final destination");
 		}
 
+=======
+		if (gObject.Length > ++targetIndex) {
+			currentTarget = gObject [targetIndex];
+			Debug.Log ("Targeting destination " + targetIndex);
+		} else {
+
+		}
+>>>>>>> origin/master
 	}
 	
 	private void MoveTowardsCoordinates()

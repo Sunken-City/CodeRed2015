@@ -21,7 +21,7 @@ public class GameController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-
+		//Camera_Move.instance.setRunning (false);
     }
 
 	public int getEnemyCount()
@@ -37,6 +37,10 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+		//temp
+		if (Input.GetKeyDown (KeyCode.Space)) {
+			//advance the camera
+			Camera_Move.instance.setRunning (!Camera_Move.instance.getRunning());
+		}
     }
 }
