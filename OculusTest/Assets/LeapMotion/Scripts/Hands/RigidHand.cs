@@ -106,7 +106,7 @@ public class RigidHand : SkeletalHand
         if (Time.time - lastFireTime > 0.5f)
         {
             Vector3 normal = this.hand_.PalmNormal.ToUnity();
-            GameObject bullet = Instantiate(projectile, palm.transform.position, Quaternion.identity) as GameObject;
+            GameObject bullet = Instantiate(projectile, palm.transform.position + normal, Quaternion.identity) as GameObject;
             bullet.GetComponent<Rigidbody>().velocity = normal * projectileSpeed;
             lastFireTime = Time.time;
         }
