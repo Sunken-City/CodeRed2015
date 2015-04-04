@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Leap;
 
 public class LaserController : MonoBehaviour
 {
@@ -35,7 +36,8 @@ public class LaserController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (skelehand.fingers[1].GetLeapFinger().IsExtended)
+        Finger finger = skelehand.fingers[1].GetLeapFinger();
+        if (finger.IsExtended)
         {
             renderer.enabled = true;
             shieldCollision.enabled = false;
@@ -43,7 +45,12 @@ public class LaserController : MonoBehaviour
             currentWidth = minimum + Mathf.PingPong(Time.time, length);
             renderer.SetWidth(currentWidth, currentWidth);
             shieldGrows = true;
-            // raycast
+            //Raycast
+
+            Vector3 forward = finger.Direction.ToUnity();
+            RaycastHit hit;
+            if (Physics.Raycast(laserFinger.transform.position + (forward * 5), forward, out hit))
+                print("There is something in front of the object! " + hit.collider.gameObject.ToString());
             //transform.position
         }
         else
