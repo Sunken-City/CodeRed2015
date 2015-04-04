@@ -3,13 +3,13 @@ using System.Collections;
 
 public class Enemy_Basic_Functions : MonoBehaviour
 {
-    public float healthLossMultiplier = 0.01f;
+    public int healthLossMultiplier = 1;
     private Color healthHue;
 
     // Use this for initialization
     void Start()
     {
-        healthHue = Color.black;
+        healthHue = gameObject.GetComponent<Renderer>().material.color;
     }
 
     // Update is called once per frame
@@ -20,12 +20,7 @@ public class Enemy_Basic_Functions : MonoBehaviour
 
     public void hurtMe()
     {
-        healthHue.r += healthLossMultiplier;
-        print(healthHue.r);
-        gameObject.GetComponent<Renderer>().material.SetColor ("_TintColor", healthHue);
-        if (healthHue.r >= 1.0f)
-        {
-            Destroy(this.gameObject);
-        }
+        healthHue.r = healthHue.r + healthLossMultiplier;
+        gameObject.GetComponent<Renderer>().material.SetColor("_Color", (healthHue));
     }
 }
