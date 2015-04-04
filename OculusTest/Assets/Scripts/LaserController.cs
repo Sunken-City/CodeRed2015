@@ -5,6 +5,7 @@ public class LaserController : MonoBehaviour
 {
     public float minimum = 0.2f;
     public float maximum = 0.3f;
+    public GameObject laserFinger;
 
     private LineRenderer renderer;
     private float currentWidth;
@@ -13,7 +14,7 @@ public class LaserController : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        renderer = this.GetComponent<LineRenderer>();
+        renderer = laserFinger.GetComponent<LineRenderer>();
         length = maximum - minimum;
         currentWidth = minimum + (length / 2);
     }
@@ -23,5 +24,8 @@ public class LaserController : MonoBehaviour
     {
         currentWidth = minimum + Mathf.PingPong(Time.time, length);
         renderer.SetWidth(currentWidth, currentWidth);
+
+        // raycast
+        //transform.position
     }
 }
