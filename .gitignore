@@ -262,3 +262,8 @@ sysinfo.txt
 Icon?
 ehthumbs.db
 [Tt]humbs.db
+
+# ==================== #
+# Crazy Unity Bullshit #
+# ==================== #
+./OculusTest/Assets/LeapMotion/*
