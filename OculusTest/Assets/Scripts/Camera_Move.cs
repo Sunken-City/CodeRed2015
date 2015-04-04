@@ -50,24 +50,11 @@ public class Camera_Move : MonoBehaviour
 	}
 
 	public void nextDestination() {
-<<<<<<< HEAD
-		if (gObject.Length < targetIndex + 1) targetIndex++;
-		if (targetIndex <= gObject.Length) {
-			currentTarget = gObject [targetIndex];
-			Debug.Log("Arrived at destination" + targetIndex);
-		} else {
-			running = false;
-			Debug.Log("Arrived at final destination");
-		}
 
-=======
 		if (gObject.Length > ++targetIndex) {
 			currentTarget = gObject [targetIndex];
 			Debug.Log ("Targeting destination " + targetIndex);
-		} else {
-
 		}
->>>>>>> origin/master
 	}
 	
 	private void MoveTowardsCoordinates()
@@ -108,6 +95,9 @@ public class Camera_Move : MonoBehaviour
 	}
 
 	public void ResumeMovement() {
-		running = true;
+		if (running == false) {
+			running = true;
+			nextDestination();
+		}
 	}
 }
