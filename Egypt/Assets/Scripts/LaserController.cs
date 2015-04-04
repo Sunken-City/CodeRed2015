@@ -33,8 +33,8 @@ public class LaserController : MonoBehaviour
         length = maximum - minimum;
         currentWidth = minimum + (length / 2);
         shieldPos = shield.transform.localPosition;
-        renderer.SetPosition(0, laserFinger.transform.position);
-        renderer.SetPosition(1, laserFinger.transform.position + (skelehand.fingers[1].GetLeapFinger().Direction.ToUnity() * 5));
+        //renderer.SetPosition(0, laserFinger.transform.localPosition);
+		//renderer.SetPosition(1, laserFinger.transform.localPosition + (skelehand.fingers[1].GetLeapFinger().Direction.ToUnity() * 5));
     }
 
     // Update is called once per frame
@@ -47,7 +47,7 @@ public class LaserController : MonoBehaviour
             shieldCollision.enabled = false;
             shieldRenderer.enabled = false;
 
-            renderer.SetPosition(0, laserFinger.transform.position);
+			//renderer.SetPosition(0, laserFinger.transform.localPosition);
             currentWidth = minimum + Mathf.PingPong(Time.time, length);
             renderer.SetWidth(currentWidth, currentWidth);
             shieldGrows = true;
@@ -57,10 +57,11 @@ public class LaserController : MonoBehaviour
             RaycastHit hit;
             if (Physics.Raycast(laserFinger.transform.position + (forward * 3), forward, out hit))
             {
+				Debug.Log("Raycast hit: " + hit.collider.gameObject.ToString());
                 Enemy_Basic_Functions hitScript = hit.collider.gameObject.GetComponent<Enemy_Basic_Functions>();
                 if (hitScript)
                     hitScript.hurtMe();
-                renderer.SetPosition(1, hit.point);
+                renderer.SetPosition(1, laserFinger.transform.InverseTransformPoint(hit.point));
                 if (!laserBlastInstance)
                 {
                     laserBlastInstance = Instantiate(laserBlast, hit.point, Quaternion.FromToRotation(Vector3.forward, hit.normal)) as GameObject;
@@ -74,7 +75,7 @@ public class LaserController : MonoBehaviour
             else
             {
                 Destroy(laserBlastInstance);
-                renderer.SetPosition(1, laserFinger.transform.position + (forward * 40));
+				renderer.SetPosition(1, laserFinger.transform.localPosition  + new Vector3(0f, 0f, 2f));
             }
         }
         else
