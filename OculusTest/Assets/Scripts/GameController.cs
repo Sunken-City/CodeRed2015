@@ -40,7 +40,7 @@ public class GameController : MonoBehaviour
 		//temp
 		if (Input.GetKeyDown (KeyCode.Space)) {
 			//advance the camera
-			Camera_Move.instance.setRunning (true);
+			Camera_Move.instance.setRunning (!Camera_Move.instance.getRunning());
 		}
     }
 }

@@ -4,7 +4,17 @@ using System.Collections;
 public class Camera_Move : MonoBehaviour
 {
 	public static Camera_Move instance;
-
+	void Awake()
+	{
+		//Hostile singleton
+		if (instance)
+		{
+			Debug.Log("Destroying irrelevant Camera_Move instance.");
+			Destroy(instance.gameObject);
+		}
+		instance = this;
+	}
+	
 	public float spd;
 	public GameObject[] gObject;
 	private int targetIndex = 0;
@@ -31,7 +41,12 @@ public class Camera_Move : MonoBehaviour
 	{
 		running = run;
 	}
-	
+
+	public bool getRunning()
+	{
+		return running;
+	}
+
 	public void nextDestination() {
 		if (gObject.Length > ++targetIndex) {
 			currentTarget = gObject [targetIndex];
