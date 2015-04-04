@@ -34,12 +34,17 @@ public class GameController : MonoBehaviour
 		++enemies;
 	}
 
+	public void killEnemy()
+	{
+		--enemies;
+	}
+
     // Update is called once per frame
     void Update()
     {
 		//temp
 		if (Input.GetKeyDown (KeyCode.Space)) {
-			//advance the camera
+			//advance or stop the camera
 			Camera_Move.instance.setRunning (!Camera_Move.instance.getRunning());
 		}
     }
