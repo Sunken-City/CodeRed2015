@@ -267,3 +267,4 @@ ehthumbs.db
 # Crazy Unity Bullshit #
 # ==================== #
 ./OculusTest/Assets/LeapMotion/*
+./OculusTest/Assets/Models/Materials/*
